@@ -28,12 +28,12 @@ namespace API {
             services.AddDbContext<DataContext> (opt => {
                 opt.UseSqlite (Configuration.GetConnectionString ("DefaultConnection"));
             });
-
-            services.AddCors (options => {
-                options.AddDefaultPolicy (
-                    builder => {
-                        builder.WithOrigins ("http://localhost:3000");
-                    });
+           services.AddCors(opt => 
+            {
+                opt.AddPolicy("CorsPolicy", policy => 
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                });
             });
 
             services.AddMediatR(typeof(List.Handler).Assembly);
@@ -51,7 +51,7 @@ namespace API {
 
             app.UseRouting ();
 
-            app.UseCors ();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization ();
 
