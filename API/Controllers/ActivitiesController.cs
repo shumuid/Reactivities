@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers {
     [Route ("api/[controller]")]
-    [ApiController]
+    // this attribute substitutes ModelState.IsValid check to throw bad requests 400 errors when the data model is not valid
+    // it also replaces the need to use [FromBody] attributes
+    [ApiController] 
     public class ActivitiesController : ControllerBase {
         private readonly IMediator _mediator;
         public ActivitiesController (IMediator mediator) {
