@@ -1,7 +1,5 @@
-import { StrictGridColumnProps } from "semantic-ui-react";
-
 export interface IUser {
-    userName: string;
+    username: string;
     displayName: string;
     token: string;
     image?: string;
